@@ -65,7 +65,7 @@ date
 # Assigning Arguments to Flags for Execution:
 
 mpiexec --allow-run-as-root \
-	-n 4 ./gflow.x \
+	-n 4 /opt/GFlow/gflow.x \
 	-habitat resistance.asc \
 	-nodes nodes \
 	-converge_at 1N \
