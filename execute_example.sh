@@ -64,14 +64,18 @@ date
 
 # Assigning Arguments to Flags for Execution:
 
+gflow_path="/opt/GFlow/"
+input_path="/opt/GFlow/inputs/"
+output_path="/opt/GFlow/output/"
+
 mpiexec --allow-run-as-root \
-	-n 4 /opt/GFlow/gflow.x \
+	-n 4 $gflow_path/gflow.x \
 	-habitat resistance.asc \
 	-nodes nodes \
 	-converge_at 1N \
 	-shuffle_node_pairs 1 \
-	-effective_resistance ./R_eff.csv \
-	-output_sum_density_filename ./{time}_local_sum_{iter}.asc \
+	-effective_resistance $input_path/R_eff.csv \
+	-output_sum_density_filename $output_path/{time}_local_sum_{iter}.asc \
 
 
 : "walltime: $SECONDS seconds"
