@@ -4,7 +4,7 @@ LD      = mpicc
 CFLAGS  = -g -Wall -O2 -std=c11 -D_GNU_SOURCE -isystem $(PETSC_DIR)/include
 LDFLAGS = -lpthread -lz -lm -L$(PETSC_DIR)/lib -lpetsc
 
-PETSC_DIR=/usr/local/Cellar/petsc/3.7.3/real
+PETSC_DIR=/usr/lib/petscdir/3.7.3/x86_64-linux-gnu-real
 
 OBJS = util.o habitat.o gflow.o nodelist.o output.o
 
