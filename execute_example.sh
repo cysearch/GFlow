@@ -64,7 +64,7 @@ date
 
 # Assigning Arguments to Flags for Execution:
 
-mpiexec --allow-run-as-root
+mpiexec --allow-run-as-root \
 	-n 4 ./gflow.x \
 	-habitat resistance.asc \
 	-nodes nodes \
