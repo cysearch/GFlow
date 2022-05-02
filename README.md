@@ -34,7 +34,7 @@ MPI implementation.
 With the required packages installed, `gflow` can be built inside its containing folder by running the following terminal command there:
 
      make
-     
+
 If you encounter errors related to PETSc, you may have to edit the `Makefile` to change the 
 value of the `PETSC_DIR` variable. For example, during the above proceedure, homebrew installed petsc here:
 
@@ -87,13 +87,13 @@ directory.
 
 **Easiest using Terminal** 
 
-1. Navigate to the directory where you downloaded GFlow and extract. 
+1. Navigate to the directory where you downloaded GFlow and extract.
 
 2. Extract the zipped example input files (`inputs.tar.gz`) into the current GFlow directory. *E.g., using terminal:*
 	```
     tar xvf inputs.tar.gz
 	```
-3. Open the commented example `execute_example.sh` script with your favorite text editor and examine the format, default settings, and save any necessary 
+3. Open the commented example `execute_example.sh` script with your favorite text editor and examine the format, default settings, and save any necessary
 adjustments. Otherwise, the script is ready to submit and solve the example problem.
 
 4. If terminal is not open, open now and navigate to GFlow directory. Execute script:

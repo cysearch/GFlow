@@ -1,11 +1,11 @@
 #!/bin/bash -x
 
-# This script is a documented working example of Gflow with a handful of random pairwise computations (until convergence = 1N) 
+# This script is a documented working example of Gflow with a handful of random pairwise computations (until convergence = 1N)
 # using 4 cpus on Ubuntu where the current density summation is the only output. 
 
 # Gflow must be compiled locally before executing this script. Dependencies for GFlow include: openmpi, hypre, and petsc. 
 
-# Execution flags are annotated below and demonstrate an example execution of GFlow. To execute script as is: type 'sh execute_example.sh' 
+# Execution flags are annotated below and demonstrate an example execution of GFlow. To execute script as is: type 'sh execute_example.sh'
 # in Terminal.
 
 which mpiexec
@@ -39,15 +39,15 @@ date
 # OPTIONAL flags
 
 	# -output_density_filename
-		# Set Output Path, file name, and format (i.e., *.asc, *.asc.gz) of individual pairwise calculations. Omitting this 
-		# flag will discard each pairwise solve output and assume you want the cumulative output only. Currently omitted below. Do 
+		# Set Output Path, file name, and format (i.e., *.asc, *.asc.gz) of individual pairwise calculations. Omitting this
+		# flag will discard each pairwise solve output and assume you want the cumulative output only. Currently omitted below. Do
 		# not use spaces in the filepath.
 		# For use see: https://github.com/gflow/GFlow/issues/8
 	# -output_sum_density_filename
-		# Set Output Path, file name prefix, and format (i.e., *.asc, *.asc.gz) of final summed calculation. If omitted, the final 
+		# Set Output Path, file name prefix, and format (i.e., *.asc, *.asc.gz) of final summed calculation. If omitted, the final
 		# summed current density will be discarded. Do not use spaces in the filepath.
 		# For use see: https://github.com/Pbleonard/GFlow/issues/8
-	# -node_pairs 
+	# -node_pairs
 		# Calculate only desired node pairs if input. Currently not used. Listed pairs should be referenced by their ID, not their
 		# coordinates.
 	# -max_distance
@@ -72,7 +72,7 @@ mpiexec --allow-run-as-root \
 	-shuffle_node_pairs 1 \
 	-effective_resistance ./R_eff.csv \
 	-output_sum_density_filename ./{time}_local_sum_{iter}.asc \
- 
+
 
 : "walltime: $SECONDS seconds"
 
