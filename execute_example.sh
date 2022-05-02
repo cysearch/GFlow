@@ -14,13 +14,6 @@ which mpiexec
 export PETSC_DIR=/usr/lib/petscdir/3.7.3/x86_64-linux-gnu-real
 export LD_LIBRARY_PATH=${PETSC_DIR}/lib:$LD_LIBRARY_PATH
 
-# Set Output Directory: Default is Current Directory
-OUTPUT_DIR=.
-
-# gflow will not automatically create the output directory.  Ensure the directory exists, otherwise the program will crash.
-[[ -d ${OUTPUT_DIR} ]] || mkdir -p ${OUTPUT_DIR}
-
-
 # Set the Clock
 SECONDS=0
 date
@@ -62,19 +55,23 @@ date
 		# Print effective resistance to log file. Supply path for .csv
 
 
+# Set Output Directory: Default is Current Directory
+OUTPUT_DIR=/opt/output/
+
+# gflow will not automatically create the output directory.  Ensure the directory exists, otherwise the program will crash.
+[[ -d ${OUTPUT_DIR} ]] || mkdir -p ${OUTPUT_DIR}
+
+GFLOW_PATH="/opt/GFlow/"
+INPUTS_PATH=$GFLOW_PATH"inputs/"
+
 # Assigning Arguments to Flags for Execution:
-
-gflow_path="/opt/GFlow/"
-inputs_path=$gflow_path."inputs/"
-output_path=gflow_path."output/"
-
 mpiexec --allow-run-as-root \
-	-n 4 $gflow_path/gflow.x \
+	-n 4 "${GFLOW_PATH}gflow.x" \
 	-habitat resistance.asc \
-	-nodes $inputs_path."nodes" \
+	-nodes "${INPUTS_PATH}nodes" \
 	-converge_at 1N \
 	-shuffle_node_pairs 1 \
-	-effective_resistance $input_path/R_eff.csv \
-	-output_sum_density_filename $output_path./produced_output_{time}_local_sum_{iter}.asc \
+	-effective_resistance "${INPUTS_PATH}R_eff.csv" \
+	-output_sum_density_filename ./{time}_local_sum_{iter}.asc \
 
 : "walltime: $SECONDS seconds"
