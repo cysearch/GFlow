@@ -3,7 +3,7 @@
 # This script is a documented working example of Gflow with a handful of random pairwise computations (until convergence = 1N)
 # using 4 cpus on Ubuntu where the current density summation is the only output. 
 
-# Gflow must be compiled locally before executing this script. Dependencies for GFlow include: openmpi, hypre, and petsc. 
+# Gflow must be compiled locally before executing this script. Dependencies for GFlow include: openmpi, hypre, and petsc.
 
 # Execution flags are annotated below and demonstrate an example execution of GFlow. To execute script as is: type 'sh execute_example.sh'
 # in Terminal.
@@ -65,19 +65,16 @@ date
 # Assigning Arguments to Flags for Execution:
 
 gflow_path="/opt/GFlow/"
-input_path="/opt/GFlow/inputs/"
-output_path="/opt/GFlow/output/"
+inputs_path=$gflow_path."inputs/"
+output_path=gflow_path."output/"
 
 mpiexec --allow-run-as-root \
 	-n 4 $gflow_path/gflow.x \
 	-habitat resistance.asc \
-	-nodes nodes \
+	-nodes $inputs_path."nodes" \
 	-converge_at 1N \
 	-shuffle_node_pairs 1 \
 	-effective_resistance $input_path/R_eff.csv \
-	-output_sum_density_filename $output_path/{time}_local_sum_{iter}.asc \
-
+	-output_sum_density_filename $output_path./produced_output_{time}_local_sum_{iter}.asc \
 
 : "walltime: $SECONDS seconds"
-
-
