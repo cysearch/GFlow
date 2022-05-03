@@ -58,8 +58,8 @@ date
 # Set Output Directory: Default is Current Directory
 OUTPUT_DIR=/opt/output/
 
-# gflow will not automatically create the output directory.  Ensure the directory exists, otherwise the program will crash.
-[[ -d ${OUTPUT_DIR} ]] || mkdir -p ${OUTPUT_DIR}
+# # gflow will not automatically create the output directory.  Ensure the directory exists, otherwise the program will crash.
+# [[ -d ${OUTPUT_DIR} ]] || mkdir -p ${OUTPUT_DIR}
 
 GFLOW_PATH="/opt/GFlow/"
 INPUTS_PATH="${GFLOW_PATH}inputs/"
