@@ -62,12 +62,12 @@ OUTPUT_DIR=/opt/output/
 [[ -d ${OUTPUT_DIR} ]] || mkdir -p ${OUTPUT_DIR}
 
 GFLOW_PATH="/opt/GFlow/"
-INPUTS_PATH=$GFLOW_PATH"inputs/"
+INPUTS_PATH="${GFLOW_PATH}inputs/"
 
 # Assigning Arguments to Flags for Execution:
 mpiexec --allow-run-as-root \
 	-n 4 "${GFLOW_PATH}gflow.x" \
-	-habitat resistance.asc \
+	-habitat "${INPUTS_PATH}resistance.asc" \
 	-nodes "${INPUTS_PATH}nodes" \
 	-converge_at 1N \
 	-shuffle_node_pairs 1 \
