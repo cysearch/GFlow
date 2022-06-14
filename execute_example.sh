@@ -73,6 +73,6 @@ mpiexec --allow-run-as-root \
 	-converge_at 1N \
 	-shuffle_node_pairs 1 \
 	-effective_resistance "${OUTPUT_DIR}R_eff.csv" \
-	-output_sum_density_filename "${OUTPUT_DIR}cytest_{time}_cummulated_sum_{iter}.asc \
+	-output_sum_density_filename "${OUTPUT_DIR}cytest_{time}_cummulated_sum_{iter}.asc" \
 
 : "walltime: $SECONDS seconds"
