@@ -56,22 +56,23 @@ date
 
 
 # Set Output Directory: Default is Current Directory
-OUTPUT_DIR=/opt/output/
+OUTPUT_DIR=/root/output/ # root directory mapped on where shell was executed (the default ~/ directory)
 
 # # gflow will not automatically create the output directory.  Ensure the directory exists, otherwise the program will crash.
-# [[ -d ${OUTPUT_DIR} ]] || mkdir -p ${OUTPUT_DIR}
+[[ -d ${OUTPUT_DIR} ]] || mkdir -p ${OUTPUT_DIR}
 
 GFLOW_PATH="/opt/GFlow/"
-INPUTS_PATH="${GFLOW_PATH}inputs/"
+INPUTS_DIR="/root/inputs/"
 
 # Assigning Arguments to Flags for Execution:
 mpiexec --allow-run-as-root \
 	-n 4 "${GFLOW_PATH}gflow.x" \
-	-habitat "${INPUTS_PATH}resistance.asc" \
-	-nodes "${INPUTS_PATH}nodes" \
+	-habitat "${INPUTS_DIR}resistance.asc" \
+	-nodes "${INPUTS_DIR}nodes" \
+	-node_pairs "${INPUTS_DIR}all.tsv" \
 	-converge_at 1N \
 	-shuffle_node_pairs 1 \
-	-effective_resistance "${INPUTS_PATH}R_eff.csv" \
-	-output_sum_density_filename ./{time}_local_sum_{iter}.asc \
+	-effective_resistance "${OUTPUT_DIR}R_eff.csv" \
+	-output_sum_density_filename "${OUTPUT_DIR}cytest_{time}_cummulated_sum_{iter}.asc \
 
 : "walltime: $SECONDS seconds"
