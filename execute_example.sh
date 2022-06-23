@@ -54,25 +54,22 @@ date
 	# -effective_resistance
 		# Print effective resistance to log file. Supply path for .csv
 
-
-# Set Output Directory: Default is Current Directory
-OUTPUT_DIR=/root/output/ # root directory mapped on where shell was executed (the default ~/ directory)
-
-# # gflow will not automatically create the output directory.  Ensure the directory exists, otherwise the program will crash.
-[[ -d ${OUTPUT_DIR} ]] || mkdir -p ${OUTPUT_DIR}
+# # gflow will not automatically create the output directory.  Ensure the directories exist, otherwise the program will crash.
 
 GFLOW_PATH="/opt/GFlow/"
-INPUTS_DIR="/root/inputs/"
+resistance_path=$1
+nodes_path=$2
+all_path=$3
+output_i_path=$4
+
 
 # Assigning Arguments to Flags for Execution:
-mpiexec --allow-run-as-root \
-	-n 4 "${GFLOW_PATH}gflow.x" \
-	-habitat "${INPUTS_DIR}resistance.asc" \
-	-nodes "${INPUTS_DIR}nodes" \
-	-node_pairs "${INPUTS_DIR}all.tsv" \
-	-converge_at 1N \
+mpiexec -n 4 "${GFLOW_PATH}gflow.x" \
+	-habitat "${resistance_path}" \
+	-nodes "${nodes_path}" \
+	-node_pairs "${all_path}" \
 	-shuffle_node_pairs 1 \
-	-effective_resistance "${OUTPUT_DIR}R_eff.csv" \
-	-output_sum_density_filename "${OUTPUT_DIR}cytest_{time}_cummulated_sum_{iter}.asc" \
+	-effective_resistance "${resistance_path}_R_eff.csv" \
+	-output_sum_density_filename "${resistance_path}" \
 
 : "walltime: $SECONDS seconds"
