@@ -57,19 +57,28 @@ date
 # # gflow will not automatically create the output directory.  Ensure the directories exist, otherwise the program will crash.
 
 GFLOW_PATH="/opt/GFlow/"
-resistance_path=$1
-nodes_path=$2
-all_path=$3
-output_i_path=$4
+RESISTANCE_PATH=$1
+NODES_PATH=$2
+ALL_PATH=$3
+OUTPUT_I_PATH=$4
+OUTPUT_REFF_PATH=$5
+NB_PROCESSES=$6
 
+echo "GFLOW_PATH : ${GFLOW_PATH}gflow.x"
+echo "RESISTANCE_PATH : ${RESISTANCE_PATH}"
+echo "NODES_PATH : ${NODES_PATH}"
+echo "ALL_PATH : ${ALL_PATH}"
+echo "OUTPUT_I_PATH : ${OUTPUT_I_PATH}"
+echo "OUTPUT_REFF_PATH : ${OUTPUT_REFF_PATH}"
 
 # Assigning Arguments to Flags for Execution:
-mpiexec -n 4 "${GFLOW_PATH}gflow.x" \
-	-habitat "${resistance_path}" \
-	-nodes "${nodes_path}" \
-	-node_pairs "${all_path}" \
+mpiexec -n "${NB_PROCESSES}" "${GFLOW_PATH}gflow.x" \
+	-habitat "${RESISTANCE_PATH}" \
+	-nodes "${NODES_PATH}" \
+	-node_pairs "${ALL_PATH}" \
 	-shuffle_node_pairs 1 \
-	-effective_resistance "${resistance_path}_R_eff.csv" \
-	-output_sum_density_filename "${resistance_path}" \
+	-effective_resistance "${REFF_PATH}" \
+	-output_sum_density_filename "${OUTPUT_I_PATH}" \
 
 : "walltime: $SECONDS seconds"
+
